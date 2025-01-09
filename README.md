@@ -5,6 +5,6 @@
 ---------------------------------------------------------------------------------------------------------------------------------  
   
 # Run instruction:                                                                                                         
-> Add the url, username and password for the database in the application.properties file.  
-> Run it using "mvn spring-boot:run" command.  
-> The api runs on the 3001 port, but you can change that in the application.properties file which you can find under resources.  
+> Add the **url**, **username** and **password** for the database in the **application.properties** file.  
+> Run it using **"mvn spring-boot:run"** command.  
+> The api runs on the **3001 port**, but you can change that in the **application.properties** file which you can find under resources.  
