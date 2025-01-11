@@ -1,6 +1,7 @@
 # General info:
 Small REST api made in java using spring boot.  
 It's made as a project for a java class at uni and also to learn how a REST api functions.  
+In the **databaseExample.txt** file you can find commands to create the postgreSQL database on your computer to test out the api.  
   
 ---------------------------------------------------------------------------------------------------------------------------------  
   
