@@ -1,0 +1,88 @@
+-- Create the airline database
+CREATE DATABASE airline;
+
+-- Connect to the airline database
+\c airline;
+
+-- Create tables
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE flights (
+    flight_id SERIAL PRIMARY KEY,
+    flight_origin VARCHAR(50) NOT NULL,
+    flight_destination VARCHAR(50) NOT NULL,
+    flight_departure_time TIMESTAMP NOT NULL,
+    flight_arrival_time TIMESTAMP NOT NULL,
+    capacity INTEGER NOT NULL,
+    price VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE reservations (
+    reservation_id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(user_id),
+    flight_id INTEGER REFERENCES flights(flight_id),
+    seat_number VARCHAR(10),
+    status VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE payments (
+    payment_id SERIAL PRIMARY KEY,
+    reservation_id INTEGER REFERENCES reservations(reservation_id),
+    payment_date TIMESTAMP NOT NULL,
+    amount VARCHAR(50) NOT NULL,
+    payment_status VARCHAR(50) NOT NULL,
+    payment_method VARCHAR(50) NOT NULL
+);
+
+-- Insert sample data into users
+INSERT INTO users (name, email, password_hash, role) VALUES
+('John Doe', 'john.doe@example.com', 'hashed_password_1', 'Customer'),
+('Jane Smith', 'jane.smith@example.com', 'hashed_password_2', 'Customer'),
+('Alice Johnson', 'alice.johnson@example.com', 'hashed_password_3', 'Customer'),
+('Bob Brown', 'bob.brown@example.com', 'hashed_password_4', 'Customer'),
+('Charlie Davis', 'charlie.davis@example.com', 'hashed_password_5', 'Customer'),
+('David Wilson', 'david.wilson@example.com', 'hashed_password_6', 'Customer'),
+('Eve Miller', 'eve.miller@example.com', 'hashed_password_7', 'Customer'),
+('Frank Taylor', 'frank.taylor@example.com', 'hashed_password_8', 'Customer'),
+('Grace Anderson', 'grace.anderson@example.com', 'hashed_password_9', 'Customer'),
+('Hank Thomas', 'hank.thomas@example.com', 'hashed_password_10', 'Customer');
+
+-- Insert sample data into flights
+INSERT INTO flights (flight_origin, flight_destination, flight_departure_time, flight_arrival_time, capacity, price) VALUES
+('New York', 'Los Angeles', '2024-12-01 08:00:00', '2024-12-01 11:00:00', 200, '500.00'),
+('Chicago', 'London', '2024-12-02 09:00:00', '2024-12-02 12:00:00', 180, '600.00'),
+('Paris', 'Frankfurt', '2024-12-03 10:00:00', '2024-12-03 13:00:00', 150, '700.00'),
+('Tokyo', 'Hong Kong', '2024-12-04 11:00:00', '2024-12-04 14:00:00', 220, '800.00'),
+('Dubai', 'Sydney', '2024-12-05 12:00:00', '2024-12-05 15:00:00', 190, '900.00');
+
+-- Insert sample data into reservations
+INSERT INTO reservations (user_id, flight_id, seat_number, status) VALUES
+(1, 1, '1A', 'Confirmed'),
+(2, 2, '2B', 'Confirmed'),
+(3, 3, '3C', 'Confirmed'),
+(4, 4, '4D', 'Confirmed'),
+(5, 5, '5E', 'Confirmed'),
+(6, 1, '6F', 'Confirmed'),
+(7, 2, '7G', 'Confirmed'),
+(8, 3, '8H', 'Confirmed'),
+(9, 4, '9I', 'Confirmed'),
+(10, 5, '10J', 'Confirmed');
+
+-- Insert sample data into payments
+INSERT INTO payments (reservation_id, payment_date, amount, payment_status, payment_method) VALUES
+(1, '2024-11-01 10:30:00', '500.00', 'SUCCESS', 'CREDIT_CARD'),
+(2, '2024-11-02 11:30:00', '600.00', 'SUCCESS', 'PAYPAL'),
+(3, '2024-11-03 12:30:00', '700.00', 'SUCCESS', 'CREDIT_CARD'),
+(4, '2024-11-04 13:30:00', '800.00', 'SUCCESS', 'DEBIT_CARD'),
+(5, '2024-11-05 14:30:00', '900.00', 'SUCCESS', 'CREDIT_CARD'),
+(6, '2024-11-06 15:30:00', '1000.00', 'SUCCESS', 'PAYPAL'),
+(7, '2024-11-07 16:30:00', '1100.00', 'SUCCESS', 'CREDIT_CARD'),
+(8, '2024-11-08 17:30:00', '1200.00', 'SUCCESS', 'DEBIT_CARD'),
+(9, '2024-11-09 18:30:00', '1300.00', 'SUCCESS', 'CREDIT_CARD'),
+(10, '2024-11-10 19:30:00', '1400.00', 'SUCCESS', 'PAYPAL');
