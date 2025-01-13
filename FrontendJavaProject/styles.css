@@ -1,0 +1,137 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #2c2c2c; /* Muted dark grey background */
+    color: #e0e0e0; /* Off-white text color */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #3a3a3a; /* Slightly lighter grey for container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #e0e0e0; /* Off-white text color */
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #e0e0e0; /* Off-white text color */
+    border-bottom: 2px solid #555; /* Darker grey for border */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+input, button {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #555; /* Darker grey for border */
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    box-sizing: border-box;
+    background-color: #e0e0e0; /* Off-white background for input */
+    color: #2c2c2c; /* Dark grey text color */
+}
+
+button {
+    background-color: #fa8072; /* Salmon button */
+    color: #2c2c2c; /* Dark grey text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none; /* Remove border */
+    outline: none; /* Remove outline */
+}
+
+button:hover {
+    background-color: #ff9980; /* Lighter salmon on hover */
+}
+
+pre {
+    background-color: #4a4a4a; /* Dark grey for pre background */
+    padding: 10px;
+    border: 1px solid #555; /* Darker grey for border */
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.flights-container {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.flight-card {
+    background-color: #e0e0e0; /* Off-white background for flight card */
+    border: 1px solid #555; /* Darker grey for border */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #2c2c2c; /* Dark grey text color */
+}
+
+.flight-card p {
+    margin: 0;
+}
+
+.flight-card .flight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flight-card .flight-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.input-group input {
+    flex: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: auto;
+}
