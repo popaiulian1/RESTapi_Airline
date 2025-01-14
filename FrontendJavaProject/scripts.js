@@ -4,9 +4,11 @@ const formatDate = (day, month, year, time) => {
     return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}T${time}:00`;
 };
 
-const displayFlightDetails = (flight, containerId) => {
+const displayFlightDetails = (flight, containerId, clear = false) => {
     const container = document.getElementById(containerId);
-    container.innerHTML = ''; // Clear previous content
+    if (clear) {
+        container.innerHTML = ''; // Clear previous content if clear is true
+    }
 
     const flightCard = document.createElement('div');
     flightCard.className = 'flight-card';
@@ -37,25 +39,24 @@ async function getFlights() {
         data.sort((a, b) => a.flightId - b.flightId);
 
         data.forEach(flight => {
-            const flightCard = document.createElement('div');
-            flightCard.className = 'flight-card';
-            flightCard.innerHTML = `
-                <div class="flight-header">
-                    <p><strong>Flight ID:</strong> ${flight.flightId}</p>
-                    <p><strong>Price:</strong> $${flight.price.toFixed(2)}</p>
-                </div>
-                <div class="flight-details">
-                    <p><strong>Origin:</strong> ${flight.flightOrigin}</p>
-                    <p><strong>Destination:</strong> ${flight.flightDestination}</p>
-                    <p><strong>Departure Time:</strong> ${new Date(flight.flightDepartureTime).toLocaleString('en-GB')}</p>
-                    <p><strong>Arrival Time:</strong> ${new Date(flight.flightArrivalTime).toLocaleString('en-GB')}</p>
-                    <p><strong>Capacity:</strong> ${flight.capacity}</p>
-                </div>
-            `;
-            flightsContainer.appendChild(flightCard);
+            displayFlightDetails(flight, 'flightsContainer');
         });
     } catch (error) {
         console.error('Error fetching flights:', error);
+    }
+}
+
+function toggleFlights() {
+    const flightsContainer = document.getElementById('flightsContainer');
+    const toggleButton = document.getElementById('toggleFlightsButton');
+
+    if (flightsContainer.style.display === 'none') {
+        getFlights();
+        flightsContainer.style.display = 'block';
+        toggleButton.textContent = 'Hide Flights';
+    } else {
+        flightsContainer.style.display = 'none';
+        toggleButton.textContent = 'Get Flights';
     }
 }
 
@@ -64,7 +65,7 @@ async function getFlight() {
         const id = document.getElementById('flightId').value;
         const response = await fetch(`${apiUrl}/flight/${id}`);
         const data = await response.json();
-        displayFlightDetails(data, 'flightOutput');
+        displayFlightDetails(data, 'flightOutput', true);
 
         // Clear input field
         document.getElementById('flightId').value = '';
@@ -103,7 +104,7 @@ async function addFlight() {
         });
 
         const data = await response.json();
-        displayFlightDetails(data, 'addFlightOutput');
+        displayFlightDetails(data, 'addFlightOutput', true);
 
         // Clear input fields
         document.getElementById('flightOrigin').value = '';
@@ -154,7 +155,7 @@ async function updateFlight() {
         });
 
         const data = await response.json();
-        displayFlightDetails(data, 'updateFlightOutput');
+        displayFlightDetails(data, 'updateFlightOutput', true);
 
         // Clear input fields
         document.getElementById('updateFlightId').value = '';
