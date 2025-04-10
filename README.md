@@ -67,9 +67,9 @@ A simple frontend implementation is included in the FrontendJavaProject director
 
 ### Configuration:
 1. Configure database connection in **application.properties**:
-spring.datasource.url=jdbc:postgresql://localhost:port/name  
-spring.datasource.username=your_username  
-spring.datasource.password=your_password  
+*spring.datasource.url=jdbc:postgresql://localhost:port/name*  
+*spring.datasource.username=your_username*  
+*spring.datasource.password=your_password*  
 1. The API runs on port **3001** by default. You can change this in the **application.properties** file.
 
 ### Running the app:
