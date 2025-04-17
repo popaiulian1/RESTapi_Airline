@@ -76,6 +76,3 @@ A simple frontend implementation is included in the FrontendJavaProject director
 You can run using:
 - ./mvnw spring-boot:run
 - mvnw.cmd spring-boot:run
-
-## Author
-Implemented by: **Popa Marian-Iulian**
